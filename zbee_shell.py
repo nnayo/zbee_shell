@@ -38,16 +38,31 @@ class ZBeeShell(cmd.Cmd): #pylint: disable=R0904
 
         self.prompt = "TRoll > "
 
+        # set a basic logger
+        self.log = logging.getLogger(__name__)
+        handler = logging.FileHandler('zbee_shell.log', mode='w')
+        formatter = logging.Formatter(
+            '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+        )
+        handler.setFormatter(formatter)
+        self.log.addHandler(handler)
+        self.log.setLevel(logging.INFO)
+
         print('connecting to Zbee through Bus Pirate...')
-        self.brdg = bp_spi_brdg.BpSpiBridge()
-        self.zbee = xbee.ZigBee(self.brdg, callback=self.callback)
+        self.brdg = bp_spi_brdg.BpSpiBridge(log=self.log)
+        self.zbee = xbee.ZigBee(self.brdg, callback=self.callback, callback_extra_param=self)
 
         self.frame_id = FrameId()
 
     @staticmethod
-    def callback(packet):
+    def callback(frame, self):
         """display the received frames"""
+
+		# log hexa value of the frame
+        self.log.info('read():'.join(['%02x ' % d for d in frame.output()]))
+
         # beautify packet before printing
+        packet = self.zbee._split_response(frame.data)
         try:
             packet['parameter'] = ord(packet['parameter'])
         except KeyError:
@@ -81,6 +96,7 @@ class ZBeeShell(cmd.Cmd): #pylint: disable=R0904
 
         log = logging.getLogger('bp_spi_brdg')
         log.info('%r' % packet)
+        self.onecmd('')
 
     def emptyline(self):
         pass
