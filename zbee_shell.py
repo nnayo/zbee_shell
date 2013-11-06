@@ -39,7 +39,7 @@ class ZBeeShell(cmd.Cmd): #pylint: disable=R0904
         self.prompt = "TRoll > "
 
         # set a basic logger
-        self.log = logging.getLogger(__name__)
+        self.log = logging.getLogger('zbee_shell')
         handler = logging.FileHandler('zbee_shell.log', mode='w')
         formatter = logging.Formatter(
             '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
