@@ -15,8 +15,8 @@ import logging
 
 
 class BpSpiBridgeError(Exception):
-	"""SPI Bus Pirate bridge error class"""
-	pass
+    """SPI Bus Pirate bridge error class"""
+    pass
 
 
 class BpSpiBridge(object):
@@ -62,7 +62,7 @@ class BpSpiBridge(object):
     def __del__(self):
         try:
             self.close()
-        except:
+        except: #pylint: disable=W0702
             pass
 
     def close(self):
@@ -139,14 +139,14 @@ class BpSpiBridge(object):
 
 if __name__ == '__main__':
 	# set a basic logger
-    log = logging.getLogger(__name__)
+    logger = logging.getLogger(__name__)
     handler = logging.FileHandler('spi_bp.log', mode='w')
     formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
     handler.setFormatter(formatter)
-    log.addHandler(handler)
-    log.setLevel(logging.INFO)
+    logger.addHandler(handler)
+    logger.setLevel(logging.INFO)
 
-    brdg = BpSpiBridge(log=log)
+    brdg = BpSpiBridge(log=logger)
     brdg.write(b'test')
     rd = brdg.read(50)
     print 'res = 0x' + ''.join(['%02x ' % ord(r) for r in rd])
