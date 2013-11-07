@@ -1,0 +1,73 @@
+2013-11-07 10:55:39,466 - zbee_shell - CRITICAL - bridge starting
+2013-11-07 10:55:41,318 - zbee_shell - CRITICAL - bridge configured
+2013-11-07 10:55:41,529 - zbee_shell - INFO - read(6): 7e 00 02 8a 00 75 
+2013-11-07 10:55:41,529 - zbee_shell - INFO - {'status': 'Hardware reset', 'id': 'modem status'}
+2013-11-07 10:55:41,529 - zbee_shell - INFO - read(6): 7e 00 02 8a 00 75 
+2013-11-07 10:55:41,529 - zbee_shell - INFO - {'status': 'Hardware reset', 'id': 'modem status'}
+2013-11-07 10:55:43,411 - zbee_shell - INFO - read(6): 7e 00 02 8a 02 73 
+2013-11-07 10:55:43,411 - zbee_shell - INFO - {'status': 'Joined network', 'id': 'modem status'}
+2013-11-07 10:55:48,392 - zbee_shell - INFO - at SH
+2013-11-07 10:55:48,393 - zbee_shell - INFO - write(8): 7e 00 04 08 04 53 48 58 
+2013-11-07 10:55:48,642 - zbee_shell - INFO - at SL
+2013-11-07 10:55:48,642 - zbee_shell - INFO - write(8): 7e 00 04 08 05 53 4c 53 
+2013-11-07 10:55:48,851 - zbee_shell - INFO - at MY
+2013-11-07 10:55:48,851 - zbee_shell - INFO - write(8): 7e 00 04 08 06 4d 59 4b 
+2013-11-07 10:55:49,076 - zbee_shell - INFO - read(13): 7e 00 09 88 04 53 48 00 00 13 a2 00 23 
+2013-11-07 10:55:49,076 - zbee_shell - INFO - {'status': '0x00 - OK', 'frame_id': '\x04', 'parameter': 'serial high: 0013a200', 'command': 'SH', 'id': 'at_response'}
+2013-11-07 10:55:49,077 - zbee_shell - INFO - at NI
+2013-11-07 10:55:49,077 - zbee_shell - INFO - write(8): 7e 00 04 08 07 4e 49 59 
+2013-11-07 10:55:49,286 - zbee_shell - INFO - read(13): 7e 00 09 88 05 53 4c 00 40 66 fa 07 2c 
+2013-11-07 10:55:49,286 - zbee_shell - INFO - {'status': '0x00 - OK', 'frame_id': '\x05', 'parameter': 'serial low : 4066fa07', 'command': 'SL', 'id': 'at_response'}
+2013-11-07 10:55:49,496 - zbee_shell - INFO - read(11): 7e 00 07 88 06 4d 59 00 22 51 58 
+2013-11-07 10:55:49,496 - zbee_shell - INFO - {'status': '0x00 - OK', 'frame_id': '\x06', 'parameter': 'network @: 2251', 'command': 'MY', 'id': 'at_response'}
+2013-11-07 10:55:50,542 - zbee_shell - INFO - read(10): 7e 00 06 88 07 4e 49 00 20 b9 
+2013-11-07 10:55:50,542 - zbee_shell - INFO - {'status': '0x00 - OK', 'frame_id': '\x07', 'parameter': 'node id: [ ]', 'command': 'NI', 'id': 'at_response'}
+2013-11-07 10:55:57,920 - zbee_shell - INFO - at AI
+2013-11-07 10:55:57,921 - zbee_shell - INFO - write(8): 7e 00 04 08 08 41 49 65 
+2013-11-07 10:55:58,329 - zbee_shell - INFO - at VR
+2013-11-07 10:55:58,329 - zbee_shell - INFO - write(8): 7e 00 04 08 09 56 52 46 
+2013-11-07 10:55:58,538 - zbee_shell - INFO - at HV
+2013-11-07 10:55:58,538 - zbee_shell - INFO - write(8): 7e 00 04 08 0a 48 56 4f 
+2013-11-07 10:55:58,747 - zbee_shell - INFO - at %V
+2013-11-07 10:55:58,747 - zbee_shell - INFO - write(8): 7e 00 04 08 0b 25 56 71 
+2013-11-07 10:55:58,967 - zbee_shell - INFO - read(10): 7e 00 06 88 08 41 49 00 00 e5 
+2013-11-07 10:55:58,968 - zbee_shell - INFO - {'status': '0x00 - OK', 'frame_id': '\x08', 'parameter': '0x00 - Successfully formed or joined a network', 'command': 'AI', 'id': 'at_response'}
+2013-11-07 10:55:58,968 - zbee_shell - INFO - at TP
+2013-11-07 10:55:58,968 - zbee_shell - INFO - write(8): 7e 00 04 08 0c 54 50 47 
+2013-11-07 10:55:59,177 - zbee_shell - INFO - read(11): 7e 00 07 88 09 56 52 00 40 16 70 
+2013-11-07 10:55:59,177 - zbee_shell - INFO - {'status': '0x00 - OK', 'frame_id': '\t', 'parameter': 'firmware: 0x4016', 'command': 'VR', 'id': 'at_response'}
+2013-11-07 10:55:59,387 - zbee_shell - INFO - read(11): 7e 00 07 88 0a 48 56 00 21 42 6c 
+2013-11-07 10:55:59,387 - zbee_shell - INFO - {'status': '0x00 - OK', 'frame_id': '\n', 'parameter': 'hardware: 2142', 'command': 'HV', 'id': 'at_response'}
+2013-11-07 10:55:59,597 - zbee_shell - INFO - read(11): 7e 00 07 88 0b 25 56 00 0c 50 95 
+2013-11-07 10:55:59,597 - zbee_shell - INFO - {'status': '0x00 - OK', 'frame_id': '\x0b', 'parameter': 'voltage: 3152 mV', 'command': '%V', 'id': 'at_response'}
+2013-11-07 10:56:00,225 - zbee_shell - INFO - read(11): 7e 00 07 88 0c 54 50 00 00 18 af 
+2013-11-07 10:56:00,225 - zbee_shell - INFO - {'status': '0x00 - OK', 'frame_id': '\x0c', 'parameter': 'temperature: 24 C', 'command': 'TP', 'id': 'at_response'}
+2013-11-07 10:56:01,816 - zbee_shell - INFO - at ID
+2013-11-07 10:56:01,817 - zbee_shell - INFO - write(8): 7e 00 04 08 0d 49 44 5d 
+2013-11-07 10:56:02,119 - zbee_shell - INFO - at OP
+2013-11-07 10:56:02,119 - zbee_shell - INFO - write(8): 7e 00 04 08 0e 4f 50 4a 
+2013-11-07 10:56:02,328 - zbee_shell - INFO - at OI
+2013-11-07 10:56:02,328 - zbee_shell - INFO - write(8): 7e 00 04 08 0f 4f 49 50 
+2013-11-07 10:56:02,746 - zbee_shell - INFO - read(17): 7e 00 0d 88 0d 49 44 00 45 01 10 00 00 00 07 77 09 
+2013-11-07 10:56:02,746 - zbee_shell - INFO - {'status': '0x00 - OK', 'frame_id': '\r', 'parameter': 'extended PAN ID: 4501100000000777', 'command': 'ID', 'id': 'at_response'}
+2013-11-07 10:56:03,175 - zbee_shell - INFO - read(17): 7e 00 0d 88 0e 4f 50 00 45 01 10 00 00 00 07 77 f6 
+2013-11-07 10:56:03,176 - zbee_shell - INFO - {'status': '0x00 - OK', 'frame_id': '\x0e', 'parameter': 'operating extended PAN ID: 4501100000000777', 'command': 'OP', 'id': 'at_response'}
+2013-11-07 10:56:03,176 - zbee_shell - INFO - read(11): 7e 00 07 88 0f 4f 49 00 67 be ab 
+2013-11-07 10:56:03,177 - zbee_shell - INFO - {'status': '0x00 - OK', 'frame_id': '\x0f', 'parameter': 'operating 16-bit PAN ID: 67be', 'command': 'OI', 'id': 'at_response'}
+2013-11-07 10:56:13,576 - zbee_shell - INFO - at PL
+2013-11-07 10:56:13,577 - zbee_shell - INFO - write(8): 7e 00 04 08 10 50 4c 4b 
+2013-11-07 10:56:13,902 - zbee_shell - INFO - at DB
+2013-11-07 10:56:13,902 - zbee_shell - INFO - write(8): 7e 00 04 08 11 44 42 60 
+2013-11-07 10:56:14,111 - zbee_shell - INFO - at PP
+2013-11-07 10:56:14,111 - zbee_shell - INFO - write(8): 7e 00 04 08 12 50 50 45 
+2013-11-07 10:56:14,320 - zbee_shell - INFO - read(10): 7e 00 06 88 10 50 4c 00 00 cb 
+2013-11-07 10:56:14,320 - zbee_shell - INFO - {'status': '0x00 - OK', 'frame_id': '\x10', 'parameter': 'power level: +0 dBm', 'command': 'PL', 'id': 'at_response'}
+2013-11-07 10:56:14,530 - zbee_shell - INFO - read(10): 7e 00 06 88 11 44 42 00 00 e0 
+2013-11-07 10:56:14,530 - zbee_shell - INFO - {'status': '0x00 - OK', 'frame_id': '\x11', 'parameter': 'received signal strength: -0 dBm', 'command': 'DB', 'id': 'at_response'}
+2013-11-07 10:56:14,740 - zbee_shell - INFO - read(10): 7e 00 06 88 12 50 50 00 12 b3 
+2013-11-07 10:56:14,740 - zbee_shell - INFO - {'status': '0x00 - OK', 'frame_id': '\x12', 'parameter': 'peak power: 18 dBm', 'command': 'PP', 'id': 'at_response'}
+2013-11-07 10:56:36,181 - zbee_shell - INFO - {'dest_addr_long': '\x00\x00\x00\x00\x00\x00\x00\x00', 'frame_id': '\x13', 'dest_addr': '\xff\xfe', 'command': 'CE', 'parameter': '', 'options': '\x00'}
+2013-11-07 10:56:36,468 - zbee_shell - INFO - write(19): 7e 00 0f 17 13 00 00 00 00 00 00 00 00 ff fe 00 43 45 50 
+2013-11-07 10:56:38,219 - zbee_shell - INFO - read(20): 7e 00 10 97 13 00 13 a2 00 40 66 f9 da 00 00 43 45 00 01 9e 
+2013-11-07 10:56:38,219 - zbee_shell - INFO - {'status': '0x00 - OK', 'source_addr': '\x00\x00', 'source_addr_long': '\x00\x13\xa2\x00@f\xf9\xda', 'frame_id': '\x13', 'command': 'CE', 'parameter': 1, 'id': 'remote_at_response'}
+2013-11-07 10:57:04,266 - zbee_shell - CRITICAL - bridge stopped
