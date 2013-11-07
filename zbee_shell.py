@@ -60,8 +60,8 @@ class ZBeeShell(cmd.Cmd): #pylint: disable=R0904
         """display the received frames"""
 
 		# log hexa value of the frame
-        self.log.info( \
-                'read():'.join(['%02x ' % ord(d) for d in frame.output()])
+        self.log.info( 'read(%d): ' % len(frame.output()) + \
+                ''.join(['%02x ' % ord(d) for d in frame.output()])
         )
 
         # beautify packet before printing
@@ -97,8 +97,7 @@ class ZBeeShell(cmd.Cmd): #pylint: disable=R0904
         rxed += '\x1b[0m'   # normal color
         print(rxed)
 
-        log = logging.getLogger('bp_spi_brdg')
-        log.info('%r' % packet)
+        self.log.info('%r' % packet)
         self.stdout.write(self.prompt)
         self.stdout.flush()
 
@@ -122,53 +121,68 @@ class ZBeeShell(cmd.Cmd): #pylint: disable=R0904
         """display addressing info"""
 
         # serial number ATSH ATSL
+        self.log.info('at SH')
         self.zbee.at(command='SH', frame_id=self.frame_id.next())
+        self.log.info('at SL')
         self.zbee.at(command='SL', frame_id=self.frame_id.next())
 
         # network address ATMY
+        self.log.info('at MY')
         self.zbee.at(command='MY', frame_id=self.frame_id.next())
 
         # node id ATNI
+        self.log.info('at NI')
         self.zbee.at(command='NI', frame_id=self.frame_id.next())
 
 
     def do_network(self, _):
         """display networking info"""
         # extended PAN id ATID
+        self.log.info('at ID')
         self.zbee.at(command='ID', frame_id=self.frame_id.next())
 
         # operating extended PAN id ATOP
+        self.log.info('at OP')
         self.zbee.at(command='OP', frame_id=self.frame_id.next())
 
         # operating 16-bit PAN id ATOI
+        self.log.info('at OI')
         self.zbee.at(command='OI', frame_id=self.frame_id.next())
 
     def do_rf(self, _):
         """display RF interfacing info"""
         # power level ATPL
+        self.log.info('at PL')
         self.zbee.at(command='PL', frame_id=self.frame_id.next())
 
         # received signal strength ATDB
+        self.log.info('at DB')
         self.zbee.at(command='DB', frame_id=self.frame_id.next())
 
         # peak power ATPP
+        self.log.info('at PP')
         self.zbee.at(command='PP', frame_id=self.frame_id.next())
 
     def do_diag(self, _):
         """display diagnostic info"""
         # association indicator ATAI
+        self.log.info('at AI')
         self.zbee.at(command='AI', frame_id=self.frame_id.next())
 
         # firmware version ATVR
+        self.log.info('at VR')
         self.zbee.at(command='VR', frame_id=self.frame_id.next())
 
         # hardware version ATHV
+        self.log.info('at HV')
         self.zbee.at(command='HV', frame_id=self.frame_id.next())
 
         # supply voltage AT%V [mV]
+        self.log.info('at %V')
         self.zbee.at(command='%V', frame_id=self.frame_id.next())
 
         # module temperature ATTP [C]
+        self.log.info('at TP')
         self.zbee.at(command='TP', frame_id=self.frame_id.next())
 
     def help_tx(self):   #pylint: disable=R0201
@@ -193,6 +207,7 @@ class ZBeeShell(cmd.Cmd): #pylint: disable=R0904
             return
 
         frame['frame_id'] = self.frame_id.next()
+        self.log.info('%r' % frame)
         self.zbee.send(cmnd[0], **frame)
 
     def do_at(self, cmnd):
@@ -201,6 +216,7 @@ class ZBeeShell(cmd.Cmd): #pylint: disable=R0904
         <command> <parameter>
         frame id will be automatically inserted
         """
+        self.log.info('at %r' % cmnd)
         cmnd = cmnd.split()
         try:
             param = ''

@@ -121,9 +121,9 @@ class BpSpiBridge(object):
         """mock-up serial.write()"""
         fdata = [ ord(d) for d in data ]
 
-        log = 'write(): ' \
-            + ''.join(['%02x ' %d for d in fdata])
-        self.log.info(log)
+        self.log.info('write(%d): ' % len(fdata) +
+            ''.join(['%02x ' %d for d in fdata])
+        )
 
         self.mutex.acquire()
         self.spi.CS_Low()
