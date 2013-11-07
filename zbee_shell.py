@@ -50,7 +50,8 @@ class ZBeeShell(cmd.Cmd): #pylint: disable=R0904
 
         print('connecting to Zbee through Bus Pirate...')
         self.brdg = bp_spi_brdg.BpSpiBridge(log=self.log)
-        self.zbee = xbee.ZigBee(self.brdg, callback=self.callback, callback_extra_param=self)
+        self.zbee = xbee.ZigBee(self.brdg, callback=self.callback, \
+                callback_extra_param=self)
 
         self.frame_id = FrameId()
 
@@ -59,7 +60,9 @@ class ZBeeShell(cmd.Cmd): #pylint: disable=R0904
         """display the received frames"""
 
 		# log hexa value of the frame
-        self.log.info('read():'.join(['%02x ' % d for d in frame.output()]))
+        self.log.info( \
+                'read():'.join(['%02x ' % ord(d) for d in frame.output()])
+        )
 
         # beautify packet before printing
         packet = self.zbee._split_response(frame.data)
@@ -96,7 +99,8 @@ class ZBeeShell(cmd.Cmd): #pylint: disable=R0904
 
         log = logging.getLogger('bp_spi_brdg')
         log.info('%r' % packet)
-        self.onecmd('')
+        self.stdout.write(self.prompt)
+        self.stdout.flush()
 
     def emptyline(self):
         pass
