@@ -10,23 +10,22 @@ import pyBusPirateLite.SPI as bp
 
 #from profilehooks import profile
 
-import logging
 import threading
+import logging
+
+
+class BpSpiBridgeError(Exception):
+    """SPI Bus Pirate bridge error class"""
+    pass
 
 
 class BpSpiBridge(object):
     """SPI Bus Pirate bridge"""
-    def __init__(self, port='/dev/bus_pirate', baudrate=bp.SPISpeed._2MHZ): #pylint: disable=W0212, C0301
-        # set a basic logger
-        self.log = logging.getLogger(__name__)
-        handler = logging.FileHandler('spi_bp.log', mode='w')
-        formatter = logging.Formatter(
-            '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
-        )
-        handler.setFormatter(formatter)
-        self.log.addHandler(handler)
-        self.log.setLevel(logging.INFO)
-
+    def __init__(self, port='/dev/bus_pirate', baudrate=bp.SPISpeed._2MHZ, log=None): #pylint: disable=W0212, C0301
+        """init the bridge"""
+        if not log:
+            raise BpSpiBridgeError('no logger provided')
+        self.log = log
         self.log.critical('bridge starting')
 
         # instantiating and configuring the Bus Pirate
@@ -37,11 +36,11 @@ class BpSpiBridge(object):
         # enter bit bang mode
         if not spi.BBmode():
             self.log.critical('bridge failed to enter in bitbang mode')
-            raise
+            raise BpSpiBridgeError('bridge failed to enter in bitbang mode')
         # enter I2C mode
         if not spi.enter_SPI():
             self.log.critical('bridge failed to enter in SPI mode')
-            raise
+            raise BpSpiBridgeError('bridge failed to enter in SPI mode')
         spi.set_speed(baudrate)
 
         # configuring SPI:
@@ -63,7 +62,7 @@ class BpSpiBridge(object):
     def __del__(self):
         try:
             self.close()
-        except:
+        except: #pylint: disable=W0702
             pass
 
     def close(self):
@@ -122,9 +121,9 @@ class BpSpiBridge(object):
         """mock-up serial.write()"""
         fdata = [ ord(d) for d in data ]
 
-        log = 'write(): ' \
-            + ''.join(['%02x ' %d for d in fdata])
-        self.log.info(log)
+        self.log.info('write(%d): ' % len(fdata) +
+            ''.join(['%02x ' %d for d in fdata])
+        )
 
         self.mutex.acquire()
         self.spi.CS_Low()
@@ -139,7 +138,15 @@ class BpSpiBridge(object):
 
 
 if __name__ == '__main__':
-    brdg = BpSpiBridge()
+	# set a basic logger
+    logger = logging.getLogger(__name__)
+    handler = logging.FileHandler('spi_bp.log', mode='w')
+    formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+    handler.setFormatter(formatter)
+    logger.addHandler(handler)
+    logger.setLevel(logging.INFO)
+
+    brdg = BpSpiBridge(log=logger)
     brdg.write(b'test')
     rd = brdg.read(50)
     print 'res = 0x' + ''.join(['%02x ' % ord(r) for r in rd])
